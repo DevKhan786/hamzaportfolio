@@ -1,103 +1,640 @@
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiNodedotjs,
+  SiMongodb,
+  SiFirebase,
+  SiGit,
+  SiGithub,
+  SiFigma,
+  SiStripe,
+  SiJest,
+  SiRedux,
+  SiExpress,
+  SiTailwindcss,
+  SiSocketdotio,
+  SiGooglecloud,
+  SiMui,
+  SiAmazon,
+  SiVercel,
+  SiReactrouter,
+} from "react-icons/si";
+import { FiFileText, FiPackage, FiBox } from "react-icons/fi";
+import { AiFillApi } from "react-icons/ai";
+import { DiMaterializecss } from "react-icons/di";
+import { GiAtom } from "react-icons/gi";
+import { VscServerProcess } from "react-icons/vsc";
+import { FaServer } from "react-icons/fa";
+import { BiLogoLinkedin } from "react-icons/bi";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+interface EducationItem {
+  institution: string;
+  degree: string;
+  period: string;
+  skills?: string[];
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+interface ExperienceItem {
+  company: string;
+  role: string;
+  period: string;
+  details: string[];
+}
+
+interface ProjectItem {
+  title: string;
+  description: string;
+  tech: string[];
+  link: string;
+  github: string;
+  image: string;
+}
+
+interface TechItem {
+  name: string;
+  icon: React.ReactNode;
+  priority?: boolean;
+}
+
+interface TechCategories {
+  languages: TechItem[];
+  frontend: TechItem[];
+  backend: TechItem[];
+  tools: TechItem[];
+}
+
+interface SocialLink {
+  name: string;
+  icon: React.ReactNode;
+  link: string;
+}
+
+const PortfolioPage = () => {
+  const [activeTab, setActiveTab] = useState("home");
+  const [techCategory, setTechCategory] = useState("languages");
+  const [imageError, setImageError] = useState(false);
+  const [showAllTech, setShowAllTech] = useState(false);
+
+  const education: EducationItem[] = [
+    {
+      institution: "FreeCodeCamp",
+      degree: "Certifications: Responsive Web Design & JavaScript Algorithms",
+      period: "Feb 2024 - Apr 2024",
+      skills: ["Web Development", "HTML", "CSS", "JavaScript"],
+    },
+    {
+      institution: "Brunel University",
+      degree: "MA Digital Games: Theory & Games Design",
+      period: "Sep 2022 - Sep 2023",
+      skills: ["Game Development", "Unity Engine", "C#"],
+    },
+    {
+      institution: "Brunel University",
+      degree: "Computer Science BSc: Second Class Honours",
+      period: "Sep 2018 - Sep 2021",
+      skills: ["Software Development", "Java"],
+    },
+  ];
+
+  const experience: ExperienceItem[] = [
+    {
+      company: "Coding Samurai",
+      role: "Web Development Intern",
+      period: "Feb 2025 – Mar 2025",
+      details: [
+        "Selected for a competitive 4-week internship focused on advanced full-stack development, contributing to live projects under mentorship.",
+        "Developed a Full-stack e-commerce MERN application with JWT authentication, Redux state management, and Stripe payment integration.",
+        "Engineered a WebSockets-based Full-stack chat app using Socket.IO, enabling real-time communication between users.",
+      ],
+    },
+    {
+      company: "Outlier AI",
+      role: "Freelance Software Developer",
+      period: "Sep 2024 – Present",
+      details: [
+        "Refactored 50+ modules of junior developers' code, reducing bugs, meeting project criteria and improving runtime efficiency.",
+        "Audited and debugged AI-generated code for compliance with performance standards, achieving 100% adherence in final deliverables.",
+        "Enhanced Large Language Model (LLM) outputs by integrating JavaScript frameworks, leading to more accurate responses.",
+      ],
+    },
+  ];
+
+  const projects: ProjectItem[] = [
+    {
+      title: "AI-Powered Chat Assistant",
+      description:
+        "An AI-powered Assistant deployed on AWS EC2 with CI/CD using github actions and Jest testing.",
+      tech: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express",
+        "AWS EC2",
+        "Clerk",
+        "JWT",
+        "React Query",
+        "GitHub Actions",
+        "Jest",
+      ],
+      link: "http://ec2-35-176-122-105.eu-west-2.compute.amazonaws.com/",
+      github: "https://github.com/DevKhan786/chatgpt-clone",
+      image: "/chat-app.png",
+    },
+    {
+      title: "Amazon Clone",
+      description:
+        "Next.js e-commerce platform deployed on Vercel with CI/CD, integrating Firebase, Firestorage & Stripe.",
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "Firebase",
+        "Stripe",
+        "NextAuth",
+        "Zustand",
+        "Tailwind CSS",
+        "DummyJSON API",
+      ],
+      link: "https://amazon-clone-sigma-ashen.vercel.app/",
+      github: "https://github.com/DevKhan786/amazon-clone",
+      image: "/amazon-clone.png",
+    },
+  ];
+
+  const technologies: TechCategories = {
+    languages: [
+      { name: "JavaScript (ES6+)", icon: <SiJavascript />, priority: true },
+      { name: "TypeScript", icon: <SiTypescript />, priority: true },
+      { name: "HTML5", icon: <SiHtml5 />, priority: true },
+      { name: "CSS3", icon: <SiCss3 />, priority: true },
+    ],
+    frontend: [
+      { name: "React.js", icon: <SiReact />, priority: true },
+      { name: "Next.js", icon: <SiNextdotjs />, priority: true },
+      { name: "Redux", icon: <SiRedux />, priority: true },
+      { name: "Tailwind CSS", icon: <SiTailwindcss />, priority: true },
+      { name: "React Query", icon: <SiReactrouter />, priority: true },
+      { name: "Zustand", icon: <FiPackage /> },
+      { name: "Material UI", icon: <SiMui /> },
+      { name: "Shadcn UI", icon: <DiMaterializecss /> },
+    ],
+    backend: [
+      { name: "Node.js", icon: <SiNodedotjs />, priority: true },
+      { name: "Express.js", icon: <SiExpress />, priority: true },
+      { name: "MongoDB", icon: <SiMongodb />, priority: true },
+      { name: "Mongoose", icon: <SiMongodb />, priority: true },
+      { name: "Firebase", icon: <SiFirebase />, priority: true },
+      { name: "REST APIs", icon: <AiFillApi /> },
+      { name: "WebSockets", icon: <SiSocketdotio /> },
+      { name: "Socket.IO", icon: <SiSocketdotio /> },
+      { name: "MERN Stack", icon: <SiReact /> },
+      { name: "Cloud Functions", icon: <VscServerProcess /> },
+    ],
+    tools: [
+      { name: "Git", icon: <SiGit />, priority: true },
+      { name: "GitHub", icon: <SiGithub />, priority: true },
+      { name: "Figma", icon: <SiFigma />, priority: true },
+      { name: "Stripe", icon: <SiStripe />, priority: true },
+      { name: "Jest Testing", icon: <SiJest />, priority: true },
+      { name: "CI/CD Pipelines", icon: <FaServer /> },
+      { name: "AWS EC2", icon: <SiAmazon /> },
+      { name: "Vercel", icon: <SiVercel /> },
+      { name: "Agile Development", icon: <GiAtom /> },
+    ],
+  };
+
+  const socialLinks: SocialLink[] = [
+    {
+      name: "GitHub",
+      icon: <SiGithub />,
+      link: "https://github.com/DevKhan786",
+    },
+    {
+      name: "LinkedIn",
+      icon: <BiLogoLinkedin />,
+      link: "https://linkedin.com/in/hamzakhan786",
+    },
+    { name: "CV", icon: <FiFileText />, link: "/current.pdf" },
+  ];
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  const getFilteredTechnologies = (techList: TechItem[]) => {
+    if (showAllTech) {
+      return techList;
+    }
+
+    return techList.filter((tech) => tech.priority);
+  };
+
+  return (
+    <div className="min-h-screen bg-black py-4 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="rounded-lg overflow-hidden mb-6">
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList className="w-full grid grid-cols-4 bg-black p-0">
+                {["home", "resume", "tech", "projects"].map((tab) => (
+                  <TabsTrigger
+                    key={tab}
+                    value={tab}
+                    className="rounded-none text-sm py-1 px-2 bg-black text-white 
+                              data-[state=active]:bg-white data-[state=active]:text-black 
+                              hover:bg-indigo-800 cursor-pointer transition-all duration-300"
+                  >
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {activeTab === "home" && (
+                <Card className="bg-black border border-indigo-600 shadow-md shadow-indigo-900/30">
+                  <CardHeader className="text-center py-6 sm:py-10">
+                    <motion.div
+                      initial={{ scale: 0.9 }}
+                      animate={{ scale: 1 }}
+                      className="flex justify-center mb-4 sm:mb-6"
+                    >
+                      <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-2 border-indigo-600 overflow-hidden shadow-lg shadow-indigo-900/40 hover:border-white transition-all duration-300">
+                        {!imageError ? (
+                          <Image
+                            src="/profile.jpg"
+                            alt="Hamza Khan"
+                            width={150}
+                            height={150}
+                            className="w-full h-full object-cover"
+                            onError={handleImageError}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <span className="text-2xl sm:text-3xl text-white font-bold">
+                              HK
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                    <motion.h1
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-2xl sm:text-4xl font-bold text-white mb-2 sm:mb-3 tracking-tight"
+                    >
+                      Hamza Khan
+                    </motion.h1>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-base sm:text-lg text-indigo-400 mb-4 sm:mb-6"
+                    >
+                      Full Stack & Front-end Developer
+                    </motion.p>
+                    <div className="flex justify-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+                      {socialLinks.map((link, index) => (
+                        <motion.a
+                          key={index}
+                          href={link.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          className="p-2 sm:p-3 rounded-full bg-indigo-900/50 hover:bg-black 
+                                    border border-indigo-600 hover:border-white cursor-pointer
+                                    transition-all duration-300"
+                        >
+                          <span className="text-xl sm:text-2xl text-white">
+                            {link.icon}
+                          </span>
+                        </motion.a>
+                      ))}
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-2 mb-5">
+                      {[
+                        "React",
+                        "Next.js",
+                        "TypeScript",
+                        "Node.js",
+                        "MongoDB",
+                      ].map((skill, index) => (
+                        <Badge
+                          key={index}
+                          className="bg-indigo-600 hover:bg-black text-white hover:text-white border border-transparent 
+                                hover:border-white px-2 py-0.5 text-xs transition-all duration-300"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardHeader>
+                </Card>
+              )}
+
+              {activeTab === "tech" && (
+                <div className="flex flex-col lg:flex-row gap-3">
+                  <div className="lg:w-1/4">
+                    <div className="bg-black rounded-lg border border-indigo-600 p-2 shadow-md shadow-indigo-900/30">
+                      <h3 className="text-white font-medium text-sm mb-2 px-2 border-b border-indigo-600 pb-2">
+                        Categories
+                      </h3>
+                      <div className="space-y-1">
+                        {Object.keys(technologies).map((category) => (
+                          <button
+                            key={category}
+                            onClick={() => setTechCategory(category)}
+                            className={`w-full text-left px-3 py-2 text-xs sm:text-sm rounded-md transition-all duration-300 cursor-pointer
+                                      ${
+                                        techCategory === category
+                                          ? "bg-indigo-600 text-white"
+                                          : "bg-black text-white hover:bg-indigo-800 border border-indigo-600"
+                                      }`}
+                          >
+                            {category.charAt(0).toUpperCase() +
+                              category.slice(1)}
+                          </button>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => setShowAllTech(!showAllTech)}
+                        className="w-full mt-3 text-center px-3 py-2 text-xs rounded-md 
+                                 bg-black text-white border border-indigo-600 hover:bg-indigo-800
+                                 transition-all duration-300"
+                      >
+                        {showAllTech ? "Show Top Skills" : "Show All Skills"}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="lg:w-3/4">
+                    <Card className="bg-black border border-indigo-600 h-auto shadow-md shadow-indigo-900/30">
+                      <CardHeader className="py-3 px-4 border-b border-indigo-800/50">
+                        <h3 className="text-sm font-medium text-white capitalize flex items-center justify-between">
+                          <span>{techCategory}</span>
+                          <span className="text-xs text-indigo-400">
+                            {showAllTech
+                              ? "Showing All Skills"
+                              : "Showing Priority Skills"}
+                          </span>
+                        </h3>
+                      </CardHeader>
+                      <CardContent className="p-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                          {getFilteredTechnologies(
+                            technologies[
+                              techCategory as keyof typeof technologies
+                            ]
+                          ).map((tech, index) => (
+                            <motion.div
+                              key={index}
+                              whileHover={{ scale: 1.02 }}
+                              className={`flex items-center p-2 sm:p-3 rounded-lg border
+                                      transition-all duration-300 cursor-pointer
+                                      ${
+                                        tech.priority
+                                          ? "bg-indigo-900/30 border-indigo-500 hover:bg-black hover:border-white"
+                                          : "bg-black border-indigo-700 hover:border-white"
+                                      }`}
+                            >
+                              <span className="text-indigo-400 text-lg sm:text-xl mr-2 sm:mr-3">
+                                {tech.icon}
+                              </span>
+                              <span className="text-white text-xs sm:text-sm">
+                                {tech.name}
+                              </span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "projects" && (
+                <div className="grid grid-cols-1 gap-5 sm:gap-6">
+                  {projects.map((project, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.01 }}
+                      className="bg-black rounded-lg border border-indigo-600 overflow-hidden shadow-md shadow-indigo-900/30"
+                    >
+                      <div className="flex flex-col sm:flex-row">
+                        <div className="sm:w-1/3 h-36 sm:h-auto relative">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            width={300}
+                            height={200}
+                            className="w-full h-full object-cover sm:border-r border-indigo-600"
+                          />
+                        </div>
+                        <div className="sm:w-2/3 p-3 sm:p-4">
+                          <h3 className="text-lg font-bold text-white mb-1">
+                            {project.title}
+                          </h3>
+                          <p className="text-indigo-400 text-xs mb-2">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1 mb-3">
+                            {project.tech.map((tech, i) => (
+                              <Badge
+                                key={i}
+                                className="bg-indigo-600 hover:bg-black text-white hover:text-white 
+                                        border border-transparent hover:border-white text-[10px] px-1.5 py-0
+                                        transition-all duration-300"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                          <div className="flex gap-2">
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <Button
+                                className="w-full h-8 bg-indigo-600 hover:bg-black text-white hover:text-white 
+                                            border border-transparent hover:border-white text-xs cursor-pointer
+                                            transition-all duration-300"
+                              >
+                                Live Demo
+                              </Button>
+                            </a>
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <Button
+                                className="w-full h-8 bg-black text-white hover:bg-indigo-600 
+                                            border border-indigo-600 hover:border-white text-xs cursor-pointer
+                                            flex items-center justify-center transition-all duration-300"
+                              >
+                                <SiGithub className="mr-1" size={14} />
+                                Code
+                              </Button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === "resume" && (
+                <div className="space-y-4">
+                  <Card className="bg-black border border-indigo-600 shadow-md shadow-indigo-900/30">
+                    <CardHeader className="py-2 px-3 border-b border-indigo-800/50">
+                      <h3 className="text-sm sm:text-base font-medium text-white">
+                        Experience
+                      </h3>
+                    </CardHeader>
+                    <CardContent className="p-3 space-y-4">
+                      {experience.map((exp, index) => (
+                        <div
+                          key={index}
+                          className="border-l-2 border-indigo-500 hover:border-white pl-2 sm:pl-3 
+                                   hover:bg-indigo-900/20 rounded-r-md transition-all duration-300"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                            <h3 className="text-sm sm:text-base font-medium text-white">
+                              {exp.company}
+                            </h3>
+                            <p className="text-indigo-300 text-[10px] sm:text-xs">
+                              {exp.period}
+                            </p>
+                          </div>
+                          <p className="text-indigo-400 text-xs mb-2">
+                            {exp.role}
+                          </p>
+
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            {[
+                              "MERN",
+                              "JWT",
+                              "Redux",
+                              "Socket.IO",
+                              "WebSockets",
+                            ].map(
+                              (skill, i) =>
+                                index === 0 && (
+                                  <Badge
+                                    key={i}
+                                    variant="outline"
+                                    className="border-indigo-500 text-indigo-300 text-[10px] px-1.5 py-0"
+                                  >
+                                    {skill}
+                                  </Badge>
+                                )
+                            )}
+                            {["JavaScript", "AI", "LLM", "Code Review"].map(
+                              (skill, i) =>
+                                index === 1 && (
+                                  <Badge
+                                    key={i}
+                                    variant="outline"
+                                    className="border-indigo-500 text-indigo-300 text-[10px] px-1.5 py-0"
+                                  >
+                                    {skill}
+                                  </Badge>
+                                )
+                            )}
+                          </div>
+
+                          <div className="space-y-1">
+                            {exp.details.map((detail, i) => (
+                              <p
+                                key={i}
+                                className="text-indigo-200 text-[10px] sm:text-xs leading-relaxed"
+                              >
+                                • {detail}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-black border border-indigo-600 shadow-md shadow-indigo-900/30">
+                    <CardHeader className="py-2 px-3 border-b border-indigo-800/50">
+                      <h3 className="text-sm sm:text-base font-medium text-white">
+                        Education
+                      </h3>
+                    </CardHeader>
+                    <CardContent className="p-3 space-y-3">
+                      {education.map((edu, index) => (
+                        <div
+                          key={index}
+                          className="border-l-2 border-indigo-500 hover:border-white pl-2 sm:pl-3 
+                                   hover:bg-indigo-900/20 rounded-r-md transition-all duration-300"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                            <h3 className="text-sm font-medium text-white">
+                              {edu.institution}
+                            </h3>
+                            <p className="text-indigo-300 text-[10px]">
+                              {edu.period}
+                            </p>
+                          </div>
+                          <p className="text-indigo-400 text-xs mb-2">
+                            {edu.degree}
+                          </p>
+                          {edu.skills && (
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {edu.skills.map((skill, i) => (
+                                <Badge
+                                  key={i}
+                                  variant="outline"
+                                  className="border-indigo-500 hover:border-white text-indigo-300
+                                           hover:bg-black text-[9px] px-1 py-0 transition-all duration-300"
+                                >
+                                  {skill}
+                                </Badge>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </div>
   );
-}
+};
+
+export default PortfolioPage;
