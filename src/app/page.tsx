@@ -24,13 +24,12 @@ import {
   SiExpress,
   SiTailwindcss,
   SiSocketdotio,
-  SiGooglecloud,
   SiMui,
   SiAmazon,
   SiVercel,
   SiReactrouter,
 } from "react-icons/si";
-import { FiFileText, FiPackage, FiBox } from "react-icons/fi";
+import { FiFileText, FiPackage } from "react-icons/fi";
 import { AiFillApi } from "react-icons/ai";
 import { DiMaterializecss } from "react-icons/di";
 import { GiAtom } from "react-icons/gi";
