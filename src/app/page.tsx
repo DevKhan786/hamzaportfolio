@@ -551,11 +551,10 @@ const PortfolioPage = () => {
 
                           <div className="flex flex-wrap gap-1 mb-2">
                             {[
-                              "MERN",
-                              "JWT",
-                              "Redux",
-                              "Socket.IO",
-                              "WebSockets",
+                              "JavaScript",
+                              "TypeScript",
+                              "LLM",
+                              "Code Review",
                             ].map(
                               (skill, i) =>
                                 index === 0 && (
@@ -568,9 +567,26 @@ const PortfolioPage = () => {
                                   </Badge>
                                 )
                             )}
-                            {["JavaScript", "AI", "LLM", "Code Review"].map(
+                            {["MERN", "Redux", "Websockets", "JWT"].map(
                               (skill, i) =>
                                 index === 1 && (
+                                  <Badge
+                                    key={i}
+                                    variant="outline"
+                                    className="border-indigo-500 text-indigo-300 text-[10px] px-1.5 py-0"
+                                  >
+                                    {skill}
+                                  </Badge>
+                                )
+                            )}
+                            {[
+                              "JavaScript",
+                              "TypeScript",
+                              "LLM",
+                              "Code Review",
+                            ].map(
+                              (skill, i) =>
+                                index === 2 && (
                                   <Badge
                                     key={i}
                                     variant="outline"
