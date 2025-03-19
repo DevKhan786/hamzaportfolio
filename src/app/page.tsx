@@ -90,42 +90,52 @@ const PortfolioPage = () => {
     {
       institution: "FreeCodeCamp",
       degree: "Certifications: Responsive Web Design & JavaScript Algorithms",
-      period: "Feb 2024 - Apr 2024",
+      period: "Jun 2024 - Jul 2024",
       skills: ["Web Development", "HTML", "CSS", "JavaScript"],
     },
     {
       institution: "Brunel University",
       degree: "MA Digital Games: Theory & Games Design",
       period: "Sep 2022 - Sep 2023",
-      skills: ["Game Development", "Unity Engine", "C#"],
+      skills: ["Game Development", "Unity Engine", "C#", "3D Modeling"],
     },
     {
       institution: "Brunel University",
       degree: "Computer Science BSc: Second Class Honours",
       period: "Sep 2018 - Sep 2021",
-      skills: ["Software Development", "Java"],
+      skills: ["Software Development", "Java", "SQL"],
     },
   ];
 
   const experience: ExperienceItem[] = [
     {
-      company: "Coding Samurai",
-      role: "Web Development Intern",
-      period: "Feb 2025 – Mar 2025",
+      company: "Outlier AI",
+      role: "Contract Software Developer",
+      period: "Sep 2024 - Present",
       details: [
-        "Selected for a competitive 4-week internship focused on advanced full-stack development, contributing to live projects under mentorship.",
-        "Developed a Full-stack e-commerce MERN application with JWT authentication, Redux state management, and Stripe payment integration.",
-        "Engineered a WebSockets-based Full-stack chat app using Socket.IO, enabling real-time communication between users.",
+        "Refactored 50+ modules of junior developers' code, reducing bugs and improving runtime efficiency",
+        "Audited and debugged AI-generated code for compliance with performance standards",
+        "Enhanced Large Language Model (LLM) outputs through JavaScript framework integrations",
       ],
     },
     {
-      company: "Outlier AI",
-      role: "Freelance Software Developer",
-      period: "Sep 2024 – Present",
+      company: "CodingSamurai",
+      role: "Web Development Intern",
+      period: "Feb 2025 - Mar 2025",
       details: [
-        "Refactored 50+ modules of junior developers' code, reducing bugs, meeting project criteria and improving runtime efficiency.",
-        "Audited and debugged AI-generated code for compliance with performance standards, achieving 100% adherence in final deliverables.",
-        "Enhanced Large Language Model (LLM) outputs by integrating JavaScript frameworks, leading to more accurate responses.",
+        "Developed full-stack MERN e-commerce application with JWT authentication and Stripe integration",
+        "Engineered WebSockets-based chat application using Socket.IO for real-time communication",
+        "Contributed to live projects under mentorship during intensive 4-week internship",
+      ],
+    },
+    {
+      company: "DataAnnotation",
+      role: "Web Developer - AI Trainer",
+      period: "Apr 2024 - Sep 2024",
+      details: [
+        "Designed JavaScript/TypeScript coding prompts for AI chatbot training",
+        "Evaluated AI-generated code for correctness and best practices adherence",
+        "Authored technical explanations to improve chatbot instructional logic",
       ],
     },
   ];
@@ -210,6 +220,9 @@ const PortfolioPage = () => {
       { name: "AWS EC2", icon: <SiAmazon /> },
       { name: "Vercel", icon: <SiVercel /> },
       { name: "Agile Development", icon: <GiAtom /> },
+      { name: "WebSockets", icon: <SiSocketdotio /> },
+      { name: "GitHub Actions", icon: <SiGithub /> },
+      { name: "Unit Testing", icon: <SiJest /> },
     ],
   };
 
