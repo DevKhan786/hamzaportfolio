@@ -142,7 +142,7 @@ const PortfolioPage = () => {
 
   const projects: ProjectItem[] = [
     {
-      title: "AI-Powered Chat Assistant",
+      title: "AI Chat Assistant",
       description:
         "An AI-powered Assistant deployed on AWS EC2 with CI/CD using github actions and Jest testing.",
       tech: [
@@ -151,11 +151,10 @@ const PortfolioPage = () => {
         "MongoDB",
         "Express",
         "AWS EC2",
-        "Clerk",
-        "JWT",
         "React Query",
         "GitHub Actions",
         "Jest",
+        "Docker",
       ],
       link: "http://ec2-35-176-122-105.eu-west-2.compute.amazonaws.com/",
       github: "https://github.com/DevKhan786/chatgpt-clone",
@@ -178,6 +177,24 @@ const PortfolioPage = () => {
       link: "https://amazon-clone-sigma-ashen.vercel.app/",
       github: "https://github.com/DevKhan786/amazon-clone",
       image: "/amazon-clone.png",
+    },
+    {
+      title: "Social Platform",
+      description:
+        "A gaming-centric social platform with real-time updates, profile management, unit testing and more (NOT YET DEPLOYED).",
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "Firebase",
+        "Recharts",
+        "Unit testing",
+        "Context API",
+        "Tailwind CSS",
+        "Jest",
+      ],
+      link: "hamzakhan.site",
+      github: "https://github.com/DevKhan786/blog-app",
+      image: "/socialapp.png",
     },
   ];
 
