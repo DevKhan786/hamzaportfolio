@@ -192,7 +192,7 @@ const PortfolioPage = () => {
         "Tailwind CSS",
         "Jest",
       ],
-      link: "hamzakhan.site",
+      link: "/to-be-deployed",
       github: "https://github.com/DevKhan786/blog-app",
       image: "/socialapp.png",
     },
