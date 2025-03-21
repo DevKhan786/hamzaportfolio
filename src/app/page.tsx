@@ -179,9 +179,9 @@ const PortfolioPage = () => {
       image: "/amazon-clone.png",
     },
     {
-      title: "Social Platform",
+      title: "Social Platform (NOT YET DEPLOYED)",
       description:
-        "A gaming-centric social platform with real-time updates, profile management, unit testing and more (NOT YET DEPLOYED).",
+        "A gaming-centric social platform with real-time updates, profile management, unit testing and more.",
       tech: [
         "Next.js",
         "TypeScript",
@@ -477,8 +477,8 @@ const PortfolioPage = () => {
                           <Image
                             src={project.image}
                             alt={project.title}
-                            width={300}
-                            height={200}
+                            width={2000}
+                            height={2000}
                             className="w-full h-full object-cover sm:border-r border-indigo-600"
                           />
                         </div>
