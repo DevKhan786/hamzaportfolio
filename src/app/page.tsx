@@ -465,7 +465,7 @@ const PortfolioPage = () => {
               )}
 
               {activeTab === "projects" && (
-                <div className="grid grid-cols-1 gap-5 sm:gap-6">
+                <div className="grid grid-cols-1 gap-10 ">
                   {projects.map((project, index) => (
                     <motion.div
                       key={index}
