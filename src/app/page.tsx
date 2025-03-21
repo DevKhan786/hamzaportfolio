@@ -144,7 +144,7 @@ const PortfolioPage = () => {
     {
       title: "AI Chat Assistant",
       description:
-        "An AI-powered Assistant deployed on AWS EC2 with CI/CD using github actions and Jest testing.",
+        "An AI-powered Mern Assistant deployed on AWS EC2 with CI/CD using github actions and Jest testing.",
       tech: [
         "React",
         "Node.js",
