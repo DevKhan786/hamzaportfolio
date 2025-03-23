@@ -558,7 +558,7 @@ const PortfolioPage = () => {
                             <h3 className="text-sm sm:text-base font-medium text-white">
                               {exp.company}
                             </h3>
-                            <p className="text-indigo-300 text-[10px] sm:text-xs">
+                            <p className="text-indigo-300 text-[10px] ">
                               {exp.period}
                             </p>
                           </div>
@@ -613,17 +613,6 @@ const PortfolioPage = () => {
                                   </Badge>
                                 )
                             )}
-                          </div>
-
-                          <div className="space-y-1">
-                            {exp.details.map((detail, i) => (
-                              <p
-                                key={i}
-                                className="text-indigo-200 text-[10px] sm:text-xs leading-relaxed"
-                              >
-                                • {detail}
-                              </p>
-                            ))}
                           </div>
                         </div>
                       ))}
