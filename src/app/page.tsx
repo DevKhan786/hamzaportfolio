@@ -61,14 +61,14 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-neutral-100 ">
+    <div className="min-h-screen bg-black text-white ">
       <section className="min-h-screen flex items-center px-4 sm:px-8">
         <div className="max-w-6xl mx-auto w-full">
           <motion.div className="space-y-8">
             <motion.h1
-              initial={{ y: 50, opacity: 0 }}
+              initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 2 }}
               className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tighter leading-none"
             >
               HAMZA KHAN
@@ -77,8 +77,8 @@ const Portfolio = () => {
             <motion.p
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="text-3xl sm:text-4xl md:text-5xl text-neutral-400"
+              transition={{ duration: 0.5, delay: 2 }}
+              className="text-3xl sm:text-4xl md:text-5xl "
             >
               FULL STACK DEVELOPER
             </motion.p>
@@ -86,7 +86,7 @@ const Portfolio = () => {
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
+              transition={{ duration: 0.5, delay: 2.5 }}
               className="flex gap-6 items-center"
             >
               <motion.a
