@@ -131,7 +131,7 @@ const Portfolio = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "0px", amount: 0.2 }}
-              transition={{ duration: 1, delay: index * 0.2 }}
+              transition={{ duration: 1, delay: index * 0.1 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
             >
@@ -150,9 +150,12 @@ const Portfolio = () => {
                     className="object-contain"
                     style={{
                       filter:
-                        hoveredIndex !== index
-                          ? "grayscale(0.8)"
-                          : "grayscale(0)",
+                        project.title === "Coming Soon" &&
+                        hoveredIndex === index
+                          ? "grayscale(1) sepia(1) hue-rotate(0deg) saturate(4)"
+                          : hoveredIndex === index
+                          ? "grayscale(0)"
+                          : "grayscale(1)",
                       transition: "filter 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                   />
