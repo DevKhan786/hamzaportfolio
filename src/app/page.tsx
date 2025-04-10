@@ -107,15 +107,6 @@ const Portfolio = () => {
               >
                 <SiLinkedin className="text-5xl sm:text-6xl" />
               </motion.a>
-
-              <motion.a
-                href="/cv.pdf"
-                target="_blank"
-                whileHover={{ scale: 1.1 }}
-                className="text-neutral-400 hover:text-white"
-              >
-                <FiFileText className="text-5xl sm:text-6xl" />
-              </motion.a>
             </motion.div>
           </motion.div>
         </div>
@@ -154,8 +145,8 @@ const Portfolio = () => {
                         hoveredIndex === index
                           ? "grayscale(1) sepia(1) hue-rotate(0deg) saturate(4)"
                           : hoveredIndex === index
-                          ? "grayscale(0)"
-                          : "grayscale(1)",
+                          ? "grayscale(0) saturate(2)"
+                          : "grayscale(0.7)",
                       transition: "filter 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                   />
