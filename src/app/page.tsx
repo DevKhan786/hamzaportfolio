@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { SiGithub, SiLinkedin } from "react-icons/si";
-import { FiFileText } from "react-icons/fi";
 import Image from "next/image";
 import { useState } from "react";
 
