@@ -78,7 +78,7 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "0px", amount: 0.2 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="text-3xl sm:text-4xl md:text-5xl "
+              className="text-3xl sm:text-4xl md:text-5xl text-[#f59e0b]" // Changed to project orange
             >
               FULL STACK DEVELOPER
             </motion.p>
@@ -94,7 +94,7 @@ const Portfolio = () => {
                 href="https://github.com/DevKhan786"
                 target="_blank"
                 whileHover={{ scale: 1.1 }}
-                className="text-neutral-400 hover:text-white"
+                className="text-neutral-400 hover:text-[#f59e0b] transition-colors" // Added orange hover
               >
                 <SiGithub className="text-5xl sm:text-6xl" />
               </motion.a>
@@ -103,7 +103,7 @@ const Portfolio = () => {
                 href="https://linkedin.com/in/hamzakhan786"
                 target="_blank"
                 whileHover={{ scale: 1.1 }}
-                className="text-neutral-400 hover:text-white"
+                className="text-neutral-400 hover:text-[#f59e0b] transition-colors" // Added orange hover
               >
                 <SiLinkedin className="text-5xl sm:text-6xl" />
               </motion.a>
