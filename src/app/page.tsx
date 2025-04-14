@@ -14,14 +14,12 @@ const Portfolio = () => {
       image: "/socialapp.png",
     },
     null,
-
     null,
     {
       title: "Amazon",
       link: "https://amazon-clone-sigma-ashen.vercel.app/",
       image: "/amazon-clone.png",
     },
-
     null,
     {
       title: "NextAI",
@@ -119,28 +117,35 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="relative w-full overflow-hidden bg-black "
+              className="relative w-full overflow-hidden group p-1"
               style={{ aspectRatio: "16/9" }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "0px", amount: 0.2 }}
               transition={{ duration: 1, delay: 0.5 }}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
+              onHoverStart={() => project && setHoveredIndex(index)}
+              onHoverEnd={() => project && setHoveredIndex(null)}
             >
+              {project && (
+                <div className="absolute inset-0 z-0 rounded-lg overflow-hidden">
+                  <div className="absolute inset-0 bg-[conic-gradient(from_var(--border-angle),#f59e0b_10%,transparent_30%,#f59e0b_90%)] animate-[border-spin_10s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-[1px] rounded-[0.4rem] bg-black/90 z-10"></div>
+                  </div>
+                </div>
+              )}
+
               {project ? (
                 <motion.a
                   href={project.link}
                   target={project.title === "Coming Soon" ? "_self" : "_blank"}
                   className="block h-full w-full relative"
-                  whileHover={{ scale: 0.9 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-contain"
+                    className="object-cover rounded-lg "
                     style={{
                       filter:
                         project.title === "Coming Soon" &&
@@ -169,7 +174,7 @@ const Portfolio = () => {
                 </motion.a>
               ) : (
                 <div
-                  className="h-full w-full bg-black"
+                  className="h-full w-full bg-stone-900/70 p-1"
                   style={{ aspectRatio: "16/9" }}
                 />
               )}
