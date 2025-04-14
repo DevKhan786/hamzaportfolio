@@ -15,6 +15,12 @@
 /.next/
 /out/
 
+# .gitignore
+.next
+node_modules
+public/current.pdf
+public/logo_files
+
 # production
 /build
 
