@@ -174,7 +174,7 @@ const Portfolio = () => {
                 </motion.a>
               ) : (
                 <div
-                  className="h-full w-full bg-stone-900/70 p-1"
+                  className="h-full w-full bg-neutral-900 p-1"
                   style={{ aspectRatio: "16/9" }}
                 />
               )}
