@@ -86,7 +86,7 @@ const Portfolio = () => {
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "0px", amount: 0.2 }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               transition={{ duration: 0.5, delay: 1.5 }}
               className="flex gap-6 items-center"
             >
