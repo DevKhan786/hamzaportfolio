@@ -9,27 +9,27 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "FPSBlogs",
+      title: "FPSBlogs Social Platform",
       link: "https://blog-app-psi-jade.vercel.app/",
       image: "/socialapp.png",
     },
     null,
     null,
     {
-      title: "Amazon",
+      title: "Amazon Clone",
       link: "https://amazon-clone-sigma-ashen.vercel.app/",
       image: "/amazon-clone.png",
     },
     null,
     {
-      title: "NextAI",
+      title: "NextAI Chat Assistant",
       link: "http://ec2-35-176-122-105.eu-west-2.compute.amazonaws.com/",
       image: "/chat-app.png",
     },
     {
-      title: "Coming Soon",
-      link: "/",
-      image: "/placeholder.jpg",
+      title: "HackerNews Automation Task",
+      link: "https://github.com/devhamzafullstack/hackernews-playwright-qa-task",
+      image: "/playwright.png",
     },
     null,
     {
@@ -91,7 +91,7 @@ const Portfolio = () => {
               className="flex gap-6 items-center"
             >
               <motion.a
-                href="https://github.com/DevKhan786"
+                href="https://github.com/devhamzafullstack"
                 target="_blank"
                 whileHover={{ scale: 1.1 }}
                 className="text-neutral-400 hover:text-[#f59e0b] transition-colors"
@@ -100,7 +100,7 @@ const Portfolio = () => {
               </motion.a>
 
               <motion.a
-                href="https://linkedin.com/in/hamzakhan786"
+                href="https://www.linkedin.com/in/devhamzafullstack/"
                 target="_blank"
                 whileHover={{ scale: 1.1 }}
                 className="text-neutral-400 hover:text-[#f59e0b] transition-colors" //
@@ -165,7 +165,7 @@ const Portfolio = () => {
                       opacity: hoveredIndex === index ? 1 : 0,
                       y: hoveredIndex === index ? 0 : 10,
                     }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <h3 className="text-sm font-medium text-white/90 bg-black/40 px-2 py-1 rounded">
                       {project.title}
